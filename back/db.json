@@ -1,0 +1,18 @@
+{
+  "articles": [
+    {
+      "title": "Atterrissage d’urgence d’un Boeing 737 MAX sans passagers aux Etats-Unis",
+      "url-img": "https://img.lemde.fr/2019/03/25/0/0/3000/1623/688/0/60/0/b6ddee1_59b86164b4654c80a45bd09a81941909-59b86164b4654c80a45bd09a81941909-0.jpg",
+      "description": "Un Boeing 737 MAX de la compagnie américaine Southwest, qui était en convoyage mardi 26 mars pour la Californie, a rencontré un problème de moteur l’obligeant à atterrir d’urgence à Orlando (Floride), a rapporté l’Agence fédérale de l’aviation (FAA). « L’avion a fait demi-tour et s’est posé sans encombre », a précisé la FAA. Aucun voyageur n’était à bord de l’appareil qui devait être convoyé à Victorville, en Californie, pour y être parqué.L’Agence fédérale a interdit de vol, le 13 mars, les Boeing 737 MAX à la suite de deux accidents meurtriers en quelques mois, mais elle autorise le convoyage d’appareils d’un aéroport à l’autre pour y être entreposés. La FAA a lancé une enquête sur l’incident de mardi. De son côté, Southwest a précisé que l’avion avait rencontré un problème sur un moteur « peu de temps après le décollage ». « L’équipage a suivi le protocole et s’est posé en toute sécurité à l’aéroport » un peu avant 15 heures heure locale, a ajouté un porte-parole, précisant que l’appareil serait acheminé vers son usine de maintenance d’Orlando pour y être vérifié.",
+      "url_site": "https://www.lemonde.fr/economie/article/2019/03/26/atterrissage-d-urgence-d-un-boeing-737-max-lors-d-un-convoyage-aux-etats-unis_5441661_3234.html",
+      "id": "1553677958211"
+    },
+    {
+      "title": "testtitle",
+      "url-img": "testimg",
+      "description": "testdesc",
+      "url_site": "testurl",
+      "id": "1553677958211"
+    }
+  ]
+}
