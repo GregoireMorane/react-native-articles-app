@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {
   StyleSheet,
@@ -6,6 +7,7 @@ import {
   View,
   Animated,
   Dimensions,
+  Image,
 } from 'react-native';
 
 import InteractiveCard, {
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FF9E0D',
-    borderRadius: 50,
+    borderRadius: 5,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
     shadowOpacity: 0.2,
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    height: 500,
+    height: 400,
     backgroundColor: '#E85F53',
     width: '92%',
     marginTop: -20,
@@ -107,6 +109,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'justify',
     fontWeight: 'bold',
+  },
+  contentUrl: {
+    fontSize: 12,
+    textAlign: 'justify',
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
+  contentDelete: {
+    fontSize: 12,
+    textAlign: 'justify',
+    fontWeight: 'bold',
+    marginTop: 5,
   },
 });
 
@@ -154,6 +168,14 @@ export default class CardsInScrollView extends React.Component {
     this.setState({ activeCard: null });
   };
 
+  handleDeletePress = id => {
+    axios.delete(`http://localhost:3002/articles/${id}`).then(res => {
+      this.setState({
+        articles: this.state.articles.filter(article => article.id !== id),
+      });
+    });
+  };
+
   render() {
     const { articles, activeCard } = this.state;
     if (articles === null) {
@@ -166,10 +188,10 @@ export default class CardsInScrollView extends React.Component {
           style={styles.scrollView}
           scrollEnabled={!Boolean(activeCard)}
         >
-          {articles.map((element, i) => {
+          {articles.map(element => {
             return (
               <InteractiveCard
-                key={i}
+                key={element.id}
                 name={element}
                 style={styles.cardStyles}
                 openCoords={{ y: 100, x: 'center' }}
@@ -180,7 +202,14 @@ export default class CardsInScrollView extends React.Component {
                 <Header style={styles.headerWrapper}>
                   <View style={styles.cardHeader}>
                     <View style={styles.leftColumn}>
-                      <View style={styles.image} />
+                      <View>
+                        <Image
+                          style={styles.image}
+                          source={{
+                            uri: element.url_img,
+                          }}
+                        />
+                      </View>
                     </View>
                     <View style={styles.rightColumn}>
                       <View style={styles.heading}>
@@ -193,6 +222,15 @@ export default class CardsInScrollView extends React.Component {
                   <ScrollView style={styles.content}>
                     <Text style={styles.contentText}>
                       {element.description}
+                    </Text>
+                    <Text style={styles.contentUrl}>
+                      Lien de l'article : {element.url_site}
+                    </Text>
+                    <Text
+                      style={styles.contentDelete}
+                      onPress={() => this.handleDeletePress(element.id)}
+                    >
+                      Supprimer l'article
                     </Text>
                   </ScrollView>
                 </Content>

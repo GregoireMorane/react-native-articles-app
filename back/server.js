@@ -38,6 +38,13 @@ low(adapter)
         .then(article => res.send(article));
     });
 
+    app.delete("/articles/:id", (req, res) => {
+      db.get("articles")
+        .remove({ id: req.params.id })
+        .write()
+        .then(x => res.send(`Article deleted at id : ${req.params.id}`));
+    });
+
     // Set db default values
     return db.defaults({ articles: [] }).write();
   })

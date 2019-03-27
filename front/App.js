@@ -9,13 +9,12 @@ const TabNavigator = createBottomTabNavigator(
   {
     HomePage: {
       screen: AddArticleTab,
-
       navigationOptions: {
         tabBarLabel: 'Ajouter un article',
         tabBarIcon: () => <Icon name="home" size={30} />,
       },
     },
-    ProfilePage: {
+    ArticlePage: {
       screen: ListArticlesTab,
       navigationOptions: {
         tabBarLabel: 'Liste des articles',
@@ -25,7 +24,7 @@ const TabNavigator = createBottomTabNavigator(
   },
 
   {
-    order: ['HomePage', 'ProfilePage'],
+    order: ['HomePage', 'ArticlePage'],
     tabBarOptions: {
       showIcon: true,
       activeTintColor: 'black',
