@@ -13,7 +13,6 @@ const HomePage = createStackNavigator(
   {
     HomePage: {
       screen: AddArticleTab,
-
       navigationOptions: {
         headerTitle: 'Home',
         headerStyle: {
