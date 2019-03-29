@@ -172,11 +172,15 @@ export default class CardsInScrollView extends React.Component {
 
   handleDeletePress = id => {
     const { articles } = this.state;
-    axios.delete(`http://localhost:3002/articles/${id}`).then(() => {
-      this.setState({
-        articles: articles.filter(article => article.id !== id),
-      });
-    });
+    axios
+      .delete(`http://192.168.1.110:3002/articles/${id}`)
+      // .delete(`http://localhost:3002/articles/${id}`)
+      .then(() => {
+        this.setState({
+          articles: articles.filter(article => article.id !== id),
+        });
+      })
+      .catch(() => console.log('error deleting article'));
   };
 
   render() {
