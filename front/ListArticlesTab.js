@@ -116,7 +116,8 @@ export default class CardsInScrollView extends React.Component {
   layoutAnimationValue = new Animated.Value(0);
 
   componentDidMount = () => {
-    axios.get('http://localhost:3002/articles').then(res => {
+    // axios.get('http://localhost:3002/articles').then(res => {
+    axios.get('http://192.168.1.110:3002/articles').then(res => {
       this.setState({ articles: res.data });
     });
   };
@@ -164,12 +165,12 @@ export default class CardsInScrollView extends React.Component {
         <ScrollView
           contentContainerStyle={styles.scrollViewConentContainer}
           style={styles.scrollView}
-          scrollEnabled={!Boolean(activeCard)}
+          scrollEnabled={!activeCard}
         >
-          {articles.map((element, i) => {
+          {articles.map(element => {
             return (
               <InteractiveCard
-                key={i}
+                key={element.url_site}
                 name={element}
                 style={styles.cardStyles}
                 openCoords={{ y: 100, x: 'center' }}

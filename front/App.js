@@ -1,31 +1,74 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddArticleTab from './AddArticleTab';
 import ListArticlesTab from './ListArticlesTab';
 
-const TabNavigator = createBottomTabNavigator(
+const HomePage = createStackNavigator(
   {
     HomePage: {
       screen: AddArticleTab,
 
       navigationOptions: {
-        tabBarLabel: 'Ajouter un article',
-        tabBarIcon: () => <Icon name="home" size={30} />,
-      },
-    },
-    ProfilePage: {
-      screen: ListArticlesTab,
-      navigationOptions: {
-        tabBarLabel: 'Liste des articles',
-        tabBarIcon: () => <Icon name="list" size={30} />,
+        headerTitle: 'Home',
+        headerStyle: {
+          backgroundColor: '#def41e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
       },
     },
   },
-
   {
-    order: ['HomePage', 'ProfilePage'],
+    initialRouteName: 'HomePage',
+  }
+);
+
+const ArticlePage = createStackNavigator(
+  {
+    ArticlePage: {
+      screen: ListArticlesTab,
+      navigationOptions: {
+        headerTitle: 'ArticlePage',
+        headerStyle: {
+          backgroundColor: '#def41e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      },
+    },
+  },
+  {
+    initialRouteName: 'ArticlePage',
+  }
+);
+
+HomePage.navigationOptions = {
+  tabBarLabel: 'Ajouter un article',
+  tabBarIcon: () => <Icon name="home" size={30} />,
+};
+
+ArticlePage.navigationOptions = {
+  tabBarLabel: 'Liste des articles',
+  tabBarIcon: () => <Icon name="list" size={30} />,
+};
+
+const Tabs = createBottomTabNavigator(
+  {
+    HomePage,
+    ArticlePage,
+  },
+  {
+    order: ['HomePage', 'ArticlePage'],
     tabBarOptions: {
       showIcon: true,
       activeTintColor: 'black',
@@ -37,4 +80,4 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(Tabs);
