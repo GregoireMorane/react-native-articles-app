@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   createBottomTabNavigator,
@@ -14,11 +15,11 @@ const HomePage = createStackNavigator(
     HomePage: {
       screen: AddArticleTab,
       navigationOptions: {
-        headerTitle: 'Home',
         headerStyle: {
-          backgroundColor: '#def41e',
+          backgroundColor: '#1E90FF',
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#FFF',
+        headerTitle: 'Ajouter un article',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
@@ -35,11 +36,11 @@ const ArticlePage = createStackNavigator(
     ArticlePage: {
       screen: ListArticlesTab,
       navigationOptions: {
-        headerTitle: 'ArticlePage',
         headerStyle: {
-          backgroundColor: '#def41e',
+          backgroundColor: '#1E90FF',
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#FFF',
+        headerTitle: 'Liste des articles',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
@@ -52,13 +53,23 @@ const ArticlePage = createStackNavigator(
 );
 
 HomePage.navigationOptions = {
-  tabBarLabel: 'Ajouter un article',
-  tabBarIcon: () => <Icon name="home" size={30} />,
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: '#1E90FF',
+  },
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="home" size={30} color={tintColor} />
+  ),
 };
 
 ArticlePage.navigationOptions = {
-  tabBarLabel: 'Liste des articles',
-  tabBarIcon: () => <Icon name="list" size={30} />,
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: '#1E90FF',
+  },
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="list" size={30} color={tintColor} />
+  ),
 };
 
 const Tabs = createBottomTabNavigator(
@@ -70,8 +81,6 @@ const Tabs = createBottomTabNavigator(
     order: ['HomePage', 'ArticlePage'],
     tabBarOptions: {
       showIcon: true,
-      activeTintColor: 'black',
-      inactiveTintColor: 'gray',
       style: {
         backgroundColor: 'white',
       },

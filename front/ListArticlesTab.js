@@ -1,5 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {
   StyleSheet,
@@ -10,6 +10,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import InteractiveCard, {
   Header,
@@ -24,12 +26,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 30,
   },
   scrollView: {
     flex: 1,
   },
-  scrollViewConentContainer: {
+  scrollViewContentContainer: {
     flexWrap: 'wrap',
     flexDirection: 'row',
   },
@@ -46,11 +47,11 @@ const styles = StyleSheet.create({
   },
   headerWrapper: {
     padding: 10,
-    paddingBottom: 30,
+    paddingBottom: 15,
   },
   cardHeader: {
     height: 100,
-    backgroundColor: '#11C5FF',
+    backgroundColor: '#1E90FF',
     flexDirection: 'row',
     borderRadius: 5,
     shadowOffset: { width: 0, height: 2 },
@@ -76,6 +77,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowColor: 'black',
   },
+  imageContent: {
+    width: '100%',
+    height: 200,
+    borderRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 2,
+    shadowOpacity: 0.2,
+    shadowColor: 'black',
+    marginBottom: 5,
+  },
   heading: {
     height: 100,
     marginBottom: 10,
@@ -99,7 +110,7 @@ const styles = StyleSheet.create({
   },
   content: {
     height: 400,
-    backgroundColor: '#E85F53',
+    backgroundColor: '#1E90FF',
     width: '92%',
     marginTop: -20,
     paddingTop: 30,
@@ -110,17 +121,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'justify',
     fontWeight: 'bold',
+    color: 'white',
   },
-  contentUrl: {
-    fontSize: 12,
-    textAlign: 'justify',
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  contentDelete: {
-    fontSize: 12,
-    textAlign: 'justify',
-    fontWeight: 'bold',
+  iconsContainer: {
     marginTop: 5,
   },
 });
@@ -131,8 +134,8 @@ export default class CardsInScrollView extends React.Component {
   layoutAnimationValue = new Animated.Value(0);
 
   componentDidMount = () => {
-    // axios.get('http://localhost:3002/articles').then(res => {
-    axios.get('http://192.168.1.110:3002/articles').then(res => {
+    axios.get('http://localhost:3002/articles').then(res => {
+      // axios.get('http://192.168.1.110:3002/articles').then(res => {
       this.setState({ articles: res.data });
     });
   };
@@ -173,8 +176,8 @@ export default class CardsInScrollView extends React.Component {
   handleDeletePress = id => {
     const { articles } = this.state;
     axios
-      .delete(`http://192.168.1.110:3002/articles/${id}`)
-      // .delete(`http://localhost:3002/articles/${id}`)
+      // .delete(`http://192.168.1.110:3002/articles/${id}`)
+      .delete(`http://localhost:3002/articles/${id}`)
       .then(() => {
         this.setState({
           articles: articles.filter(article => article.id !== id),
@@ -191,14 +194,14 @@ export default class CardsInScrollView extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView
-          contentContainerStyle={styles.scrollViewConentContainer}
+          contentContainerStyle={styles.scrollViewContentContainer}
           style={styles.scrollView}
           scrollEnabled={!activeCard}
         >
           {articles.map(element => {
             return (
               <InteractiveCard
-                key={element.url_site}
+                key={element.id}
                 name={element}
                 style={styles.cardStyles}
                 openCoords={{ y: 100, x: 'center' }}
@@ -227,18 +230,23 @@ export default class CardsInScrollView extends React.Component {
                 </Header>
                 <Content enterFrom="bottom" style={styles.contentWrapper}>
                   <ScrollView style={styles.content}>
+                    <Image
+                      style={styles.imageContent}
+                      source={{
+                        uri: element.url_img,
+                      }}
+                    />
                     <Text style={styles.contentText}>
                       {element.description}
                     </Text>
-                    <Text style={styles.contentUrl}>
-                      Lien de l'article :{element.url_site}
-                    </Text>
-                    <Text
-                      style={styles.contentDelete}
-                      onPress={() => this.handleDeletePress(element.id)}
-                    >
-                      Supprimer l'article
-                    </Text>
+                    <View style={styles.iconsContainer}>
+                      <Icon
+                        name="trash"
+                        size={15}
+                        onPress={() => this.handleDeletePress(element.id)}
+                      />
+                      <Icon name="heart" size={15} />
+                    </View>
                   </ScrollView>
                 </Content>
               </InteractiveCard>
