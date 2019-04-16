@@ -9,10 +9,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddArticleTab from './AddArticleTab';
 import ListArticlesTab from './ListArticlesTab';
+import ProfileTab from './ProfileTab';
 
-const HomePage = createStackNavigator(
+const AddArticlePage = createStackNavigator(
   {
-    HomePage: {
+    AddArticlePage: {
       screen: AddArticleTab,
       navigationOptions: {
         headerStyle: {
@@ -27,7 +28,7 @@ const HomePage = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'HomePage',
+    initialRouteName: 'AddArticlePage',
   }
 );
 
@@ -52,13 +53,34 @@ const ArticlePage = createStackNavigator(
   }
 );
 
-HomePage.navigationOptions = {
+const ProfilePage = createStackNavigator(
+  {
+    ProfilePage: {
+      screen: ProfileTab,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#1E90FF',
+        },
+        headerTintColor: '#FFF',
+        headerTitle: 'Profile',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      },
+    },
+  },
+  {
+    initialRouteName: 'ProfilePage',
+  }
+);
+
+AddArticlePage.navigationOptions = {
   tabBarOptions: {
     showLabel: false,
     activeTintColor: '#1E90FF',
   },
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="home" size={30} color={tintColor} />
+    <Icon name="plus" size={30} color={tintColor} />
   ),
 };
 
@@ -72,13 +94,24 @@ ArticlePage.navigationOptions = {
   ),
 };
 
+ProfilePage.navigationOptions = {
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: '#1E90FF',
+  },
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="user" size={30} color={tintColor} />
+  ),
+};
+
 const Tabs = createBottomTabNavigator(
   {
-    HomePage,
+    AddArticlePage,
     ArticlePage,
+    ProfilePage,
   },
   {
-    order: ['HomePage', 'ArticlePage'],
+    order: ['AddArticlePage', 'ArticlePage', 'ProfilePage'],
     tabBarOptions: {
       showIcon: true,
       style: {

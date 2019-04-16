@@ -9,6 +9,7 @@ import {
   Animated,
   Dimensions,
   Image,
+  Linking,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -53,11 +54,11 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: '#1E90FF',
     flexDirection: 'row',
-    borderRadius: 5,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 1,
-    shadowOpacity: 0.2,
-    shadowColor: 'black',
+    borderRadius: 10,
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 5,
+    shadowOpacity: 0.5,
+    shadowColor: '#1E90FF',
   },
   leftColumn: {
     flex: 1,
@@ -124,7 +125,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   iconsContainer: {
+    width: '100%',
     marginTop: 5,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  iconsContent: {
+    marginLeft: 2,
   },
 });
 
@@ -134,11 +142,19 @@ export default class CardsInScrollView extends React.Component {
   layoutAnimationValue = new Animated.Value(0);
 
   componentDidMount = () => {
-    axios.get('http://localhost:3002/articles').then(res => {
-      // axios.get('http://192.168.1.110:3002/articles').then(res => {
-      this.setState({ articles: res.data });
-    });
+    // eslint-disable-next-line react/prop-types
+    const { navigation } = this.props;
+    this.didFocusListener = navigation.addListener('didFocus', () =>
+      axios.get('http://localhost:3002/articles').then(res => {
+        // axios.get('http://192.168.1.110:3002/articles').then(res => {
+        this.setState({ articles: res.data });
+      })
+    );
   };
+
+  componentWillUnmount() {
+    this.didFocusListener.remove();
+  }
 
   onAnimationProgress = draggingProgress => {
     if (draggingProgress >= 0 && draggingProgress <= 1)
@@ -241,11 +257,25 @@ export default class CardsInScrollView extends React.Component {
                     </Text>
                     <View style={styles.iconsContainer}>
                       <Icon
+                        style={styles.iconsContent}
+                        color="white"
+                        name="external-link"
+                        size={15}
+                        onPress={() => Linking.openURL(element.url)}
+                      />
+                      <Icon
+                        style={styles.iconsContent}
+                        color="white"
+                        name="heart"
+                        size={15}
+                      />
+                      <Icon
+                        style={styles.iconsContent}
+                        color="white"
                         name="trash"
                         size={15}
                         onPress={() => this.handleDeletePress(element.id)}
                       />
-                      <Icon name="heart" size={15} />
                     </View>
                   </ScrollView>
                 </Content>
