@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { View } from 'react-native';
 
-import App from '../AddArticleTab';
+import AddArticleTab from '../components/AddArticleTab';
 
-describe('App', () => {
+describe('AddArticleTab', () => {
   it('renders View', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = shallow(<AddArticleTab />);
     expect(wrapper.find(View)).toHaveLength(1);
   });
 });

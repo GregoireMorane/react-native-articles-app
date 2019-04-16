@@ -7,9 +7,9 @@ import {
 } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import AddArticleTab from './AddArticleTab';
-import ListArticlesTab from './ListArticlesTab';
-import ProfileTab from './ProfileTab';
+import AddArticleTab from './components/AddArticleTab';
+import ListArticlesTab from './components/ListArticlesTab';
+import ProfileTab from './components/ProfileTab';
 
 const AddArticlePage = createStackNavigator(
   {
