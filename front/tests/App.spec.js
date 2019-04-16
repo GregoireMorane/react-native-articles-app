@@ -1,12 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { View } from 'react-native';
+import { View, Modal } from 'react-native';
 
-import AddArticleTab from '../components/AddArticleTab';
+import App from '../components/AddArticleTab';
 
-describe('AddArticleTab', () => {
+describe('App', () => {
   it('renders View', () => {
-    const wrapper = shallow(<AddArticleTab />);
-    expect(wrapper.find(View)).toHaveLength(1);
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(View)).toHaveLength(4);
+  });
+  it('renders Modal', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(Modal)).toHaveLength(1);
   });
 });
