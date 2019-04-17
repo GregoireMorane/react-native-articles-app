@@ -10,6 +10,7 @@ import {
   Dimensions,
   Image,
   Linking,
+  StatusBar,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -209,6 +210,7 @@ export default class CardsInScrollView extends React.Component {
     }
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <ScrollView
           contentContainerStyle={styles.scrollViewContentContainer}
           style={styles.scrollView}

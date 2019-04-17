@@ -6,6 +6,7 @@ import {
   Modal,
   Alert,
   TextInput,
+  StatusBar,
 } from 'react-native';
 import axios from 'axios';
 
@@ -65,6 +66,7 @@ export default class AddArticleTab extends React.Component {
     const { modalVisible, url } = this.state;
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <Modal
           animationType="slide"
           transparent={false}
