@@ -6,6 +6,8 @@ node_modules
 
 .env
 
+back/db.json
+
 api/conf
 
 # testing

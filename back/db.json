@@ -77,5 +77,13 @@
       "url": "https://www.thebackpackerz.com/rappeurs-divas-soul-10-recentes-collaborations/",
       "id": "1555402095088"
     }
+  ],
+  "users": [
+    {
+      "email": "test@test.com",
+      "password": "test",
+      "pseudo": "yo",
+      "id": "1555489707882"
+    }
   ]
 }

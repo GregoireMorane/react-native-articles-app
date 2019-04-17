@@ -1,6 +1,8 @@
 const { getMetaProperties } = require("./scrape");
 const dataInterface = require("./data-interface");
 
+// ARTICLES
+
 const getArticles = (request, response) => {
   response.send(dataInterface.getArticles());
 };
@@ -28,4 +30,39 @@ const deleteArticle = (request, response) => {
   }
 };
 
-module.exports = { createArticle, getArticles, deleteArticle };
+// USERS
+
+const getUsers = (request, response) => {
+  response.send(dataInterface.getUsers());
+};
+
+const createUser = async (request, response) => {
+  const data = request.body;
+  const email = request.body.email;
+
+  if (dataInterface.findUserByEmail(email)) {
+    response.send(403, { error: "Email already taken" });
+  } else {
+    dataInterface.createUser(data);
+    response.send(201, data);
+  }
+};
+
+const deleteUser = (request, response) => {
+  const id = request.params.id;
+  if (dataInterface.findUserbyId(id)) {
+    dataInterface.deleteUser(id);
+    response.send(200, { ok: "User deleted" });
+  } else {
+    response.send(404, { error: "User does not exist" });
+  }
+};
+
+module.exports = {
+  createArticle,
+  getArticles,
+  deleteArticle,
+  getUsers,
+  createUser,
+  deleteUser
+};
