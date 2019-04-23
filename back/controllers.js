@@ -1,5 +1,6 @@
 const { getMetaProperties } = require("./scrape");
 const dataInterface = require("./data-interface");
+const bcrypt = require("bcrypt");
 
 // ARTICLES
 
@@ -37,14 +38,16 @@ const getUsers = (request, response) => {
 };
 
 const createUser = async (request, response) => {
-  const data = request.body;
   const email = request.body.email;
 
   if (dataInterface.findUserByEmail(email)) {
     response.send(403, { error: "Email already taken" });
   } else {
-    dataInterface.createUser(data);
-    response.send(201, data);
+    bcrypt.hash(request.body.password, 12, function(err, hashedPassword) {
+      const data = { ...request.body, password: hashedPassword };
+      dataInterface.createUser(data);
+      response.send(201, data);
+    });
   }
 };
 

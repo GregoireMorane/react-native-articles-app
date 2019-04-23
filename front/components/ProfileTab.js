@@ -35,7 +35,7 @@ export default class ProfileTab extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Image style={styles.ProfilPicture} />
-        <Text>Name Placeholder</Text>
+        <Text>Name placeholder</Text>
         <Icon color="red" name="heart" size={30} />
         <Text>Nb Loved Articles Placeholder</Text>
         <View style={styles.emailContainer}>

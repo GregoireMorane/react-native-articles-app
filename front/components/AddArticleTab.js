@@ -75,6 +75,7 @@ export default class AddArticleTab extends React.Component {
             Alert.alert('Modal has been closed.');
           }}
         >
+          <StatusBar barStyle="dark-content" />
           <View style={styles.modal}>
             <View style={styles.containerButtonCloseModal}>
               <Button

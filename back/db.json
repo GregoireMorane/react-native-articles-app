@@ -36,13 +36,6 @@
       "id": "1555001547902"
     },
     {
-      "title": "Meet the Obsessive Calorie Counters of Reddit – Elemental by Medium",
-      "url_img": "https://cdn-images-1.medium.com/max/1200/1*e-jYhCAuO8EAooo-nE9knw.png",
-      "description": "The internet’s favorite diet has a dark side",
-      "url": "https://elemental.medium.com/meet-the-obsessive-calorie-counters-of-reddit-96d3f002c1f9",
-      "id": "1555001624418"
-    },
-    {
       "title": "Scientists Release the First Image of a Massive Black Hole",
       "url_img": "https://cdn-images-1.medium.com/focal/1200/632/50/47/1*Y8eRqV8KWHPuJOAaqhLycQ.jpeg",
       "description": "Here’s how they did it",
@@ -57,13 +50,6 @@
       "id": "1555002753219"
     },
     {
-      "title": "10 albums Hip-Hop qui fêtent leurs 30 ans en 2019",
-      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/03/albums-hip-hop-1989.png",
-      "description": "Retour sur 10 albums marquants de 1989, qui annonceront le raz de marée rapologique des années à venir. Un top throwback à souhait.",
-      "url": "https://www.thebackpackerz.com/10-albums-hip-hop-30-ans-1989-2019/",
-      "id": "1555318014226"
-    },
-    {
       "title": "Kery James : \"Les rappeurs n'ont plus ce rôle de contrepoids\" | Interview",
       "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/03/kery-james-interview-cover.png",
       "description": "On a rencontré Kery James pour dresser le bilan de l'année passée et échanger avec lui sur ses nombreux projets à venir, entre musique, théâtre et cinéma.",
@@ -76,14 +62,28 @@
       "description": "Pour fêter le printemps, on adoucit les velléités de vos rappeurs préférés en vous présentant 10 collaborations entre ceux-ci et 10 divas de la soul moderne",
       "url": "https://www.thebackpackerz.com/rappeurs-divas-soul-10-recentes-collaborations/",
       "id": "1555402095088"
+    },
+    {
+      "title": "Prince : roi du funk devenu égérie des rappeurs",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/prince-rap-hip-hop.png",
+      "description": "Parti il y a tout juste 3 ans, on a eu envie de rendre un nouvel hommage à Prince en explorant l'influence du kid de Mineapolis dans la culture rap.",
+      "url": "https://www.thebackpackerz.com/prince-roi-du-funk-devenu-egerie-des-rappeurs/",
+      "id": "1556003617402"
+    },
+    {
+      "title": "Les Frères Scotch dévoilent leur premier EP Neptune",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/LFS-1024x683.jpg",
+      "description": "Duo originaire du 19ème arrondissement, le groupe parisien composé de Lekas et Noskro a sorti vendredi son premier EP intitulé 'Neptune'.",
+      "url": "https://www.thebackpackerz.com/les-freres-scotch-devoilent-leur-premier-ep-neptune/",
+      "id": "1556007626901"
     }
   ],
   "users": [
     {
       "email": "test@test.com",
-      "password": "test",
+      "password": "$2b$12$VnD7XnQ8/EBFzxwMTGLdf.QSzUqzzq7UiO/ftV0ANiG.sSeNm7TUi",
       "pseudo": "yo",
-      "id": "1555489707882"
+      "id": "1556011348148"
     }
   ]
 }
