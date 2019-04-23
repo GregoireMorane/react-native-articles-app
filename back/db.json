@@ -64,18 +64,32 @@
       "id": "1555402095088"
     },
     {
-      "title": "Prince : roi du funk devenu égérie des rappeurs",
-      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/prince-rap-hip-hop.png",
-      "description": "Parti il y a tout juste 3 ans, on a eu envie de rendre un nouvel hommage à Prince en explorant l'influence du kid de Mineapolis dans la culture rap.",
-      "url": "https://www.thebackpackerz.com/prince-roi-du-funk-devenu-egerie-des-rappeurs/",
-      "id": "1556003617402"
-    },
-    {
       "title": "Les Frères Scotch dévoilent leur premier EP Neptune",
       "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/LFS-1024x683.jpg",
       "description": "Duo originaire du 19ème arrondissement, le groupe parisien composé de Lekas et Noskro a sorti vendredi son premier EP intitulé 'Neptune'.",
       "url": "https://www.thebackpackerz.com/les-freres-scotch-devoilent-leur-premier-ep-neptune/",
       "id": "1556007626901"
+    },
+    {
+      "title": "Yann Couedor, ce peintre français qui tire le portrait des stars du rap",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/yann-couedor-peintre-rap.jpg",
+      "description": "A l'occasion de son exposition à Paris, on a rencontré Yann Couedor, le portraitiste qui à l'origine des covers des 2 derniers albums de Dosseh.",
+      "url": "https://www.thebackpackerz.com/yann-couedor-peintre-francais-portrait-stars-du-rap/",
+      "id": "1556026161935"
+    },
+    {
+      "title": "Les 10 meilleurs sons de la semaine (Heavy Rotation #230)",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/tierra-whack-rappeuse-1.jpg",
+      "description": "Alors que s'achevait ce week-end, la grand messe Coachella, on a retenu 10 sorties qui nous ont semblé mériter votre attention cette semaine.",
+      "url": "https://www.thebackpackerz.com/heavy-rotation-230/",
+      "id": "1556029054775"
+    },
+    {
+      "title": "French Game, la web-série d'Arte qui retrace l'histoire du rap français",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/04/time-bomb-histoire-hip-hop-documentaire.jpg",
+      "description": "Du \"Monde de demain\" de NTM à \"Auto-Tune\" de Damso, la web-série French Game se propose de livrer la grande épopée du rap français à travers 11 classiques.",
+      "url": "https://www.thebackpackerz.com/french-game-web-serie-arte-histoire-du-rap-francais/",
+      "id": "1556032528706"
     }
   ],
   "users": [
@@ -84,6 +98,12 @@
       "password": "$2b$12$VnD7XnQ8/EBFzxwMTGLdf.QSzUqzzq7UiO/ftV0ANiG.sSeNm7TUi",
       "pseudo": "yo",
       "id": "1556011348148"
+    },
+    {
+      "email": "test@tesst.com",
+      "password": "$2b$12$45.RvM/A6l2qtXjjWAp.eeqtlSUnFS9II/BtsDkUacsgKj5y6xeA.",
+      "pseudo": "yo",
+      "id": "1556014004042"
     }
   ]
 }

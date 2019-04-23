@@ -7,7 +7,8 @@ const {
   getArticles,
   deleteArticle,
   getUsers,
-  createUser
+  createUser,
+  loginUser
 } = require("./controllers");
 
 const app = express();
@@ -27,7 +28,8 @@ app.get("/articles", getArticles);
 app.post("/articles", createArticle);
 app.delete("/articles/:id", deleteArticle);
 app.get("/users", getUsers);
-app.post("/users", createUser);
+app.post("/users/register", createUser);
+app.post("/users/login", loginUser);
 
 app.listen(3002, () => {
   console.log("Server listening on port 3002.");

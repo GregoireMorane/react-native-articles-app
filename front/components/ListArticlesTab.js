@@ -199,8 +199,7 @@ export default class CardsInScrollView extends React.Component {
         this.setState({
           articles: articles.filter(article => article.id !== id),
         });
-      })
-      .catch(() => console.log('error deleting article'));
+      });
   };
 
   render() {
@@ -262,20 +261,20 @@ export default class CardsInScrollView extends React.Component {
                         style={styles.iconsContent}
                         color="white"
                         name="external-link"
-                        size={15}
+                        size={30}
                         onPress={() => Linking.openURL(element.url)}
                       />
                       <Icon
                         style={styles.iconsContent}
                         color="white"
                         name="heart"
-                        size={15}
+                        size={30}
                       />
                       <Icon
                         style={styles.iconsContent}
                         color="white"
                         name="trash"
-                        size={15}
+                        size={30}
                         onPress={() => this.handleDeletePress(element.id)}
                       />
                     </View>

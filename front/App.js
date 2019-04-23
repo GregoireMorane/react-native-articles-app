@@ -114,9 +114,6 @@ const Tabs = createBottomTabNavigator(
     order: ['AddArticlePage', 'ArticlePage', 'ProfilePage'],
     tabBarOptions: {
       showIcon: true,
-      style: {
-        backgroundColor: 'white',
-      },
     },
   }
 );

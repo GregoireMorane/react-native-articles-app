@@ -43,7 +43,7 @@ const createUser = async (request, response) => {
   if (dataInterface.findUserByEmail(email)) {
     response.send(403, { error: "Email already taken" });
   } else {
-    bcrypt.hash(request.body.password, 12, function(err, hashedPassword) {
+    bcrypt.hash(request.body.password, 12, (err, hashedPassword) => {
       const data = { ...request.body, password: hashedPassword };
       dataInterface.createUser(data);
       response.send(201, data);
@@ -61,11 +61,30 @@ const deleteUser = (request, response) => {
   }
 };
 
+const loginUser = (req, res) => {
+  const email = req.body.email;
+  if (dataInterface.findUserByEmail(email)) {
+    const UserFound = dataInterface.findUserByEmail(email);
+    bcrypt.compare(req.body.password, UserFound.password, (error, response) => {
+      if (response) {
+        return res.send(200, {
+          ok: `User logged with id : ${UserFound.id}`
+        });
+      } else {
+        return res.send(404, { error: "Wrong password" });
+      }
+    });
+  } else {
+    res.send(404, { error: "User does not exist" });
+  }
+};
+
 module.exports = {
   createArticle,
   getArticles,
   deleteArticle,
   getUsers,
   createUser,
-  deleteUser
+  deleteUser,
+  loginUser
 };

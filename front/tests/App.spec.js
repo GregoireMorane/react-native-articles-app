@@ -7,7 +7,7 @@ import App from '../components/AddArticleTab';
 describe('App', () => {
   it('renders View', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find(View)).toHaveLength(4);
+    expect(wrapper.find(View)).toHaveLength(3);
   });
   it('renders Modal', () => {
     const wrapper = shallow(<App />);
