@@ -7,6 +7,7 @@ import {
   Image,
   StatusBar,
   AsyncStorage,
+  Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
 export default class ProfileTab extends React.Component {
   state = {
     user: null,
+    clearedStorage: true,
   };
 
   componentDidMount = () => {
@@ -50,16 +52,25 @@ export default class ProfileTab extends React.Component {
       axios
         .get(`http://localhost:3002/users/${token}`)
         .then(res => {
-          this.setState({ user: res.data });
+          this.setState({ user: res.data, clearedStorage: false });
         })
         .catch(err => err);
     });
   };
 
+  clearStorage = async () => {
+    await AsyncStorage.removeItem('token');
+    this.setState({ clearedStorage: true });
+  };
+
   render() {
-    const { user } = this.state;
-    if (user === null) {
-      return <Text>Loading...</Text>;
+    const { user, clearedStorage } = this.state;
+    if (clearedStorage === true) {
+      return (
+        <View style={styles.container}>
+          <Text>Connectez vous pour acceder à cette page.</Text>
+        </View>
+      );
     }
     return (
       <View style={styles.container}>
@@ -72,6 +83,7 @@ export default class ProfileTab extends React.Component {
           <Icon color="#1E90FF" name="envelope" size={15} />
           <Text style={styles.emailPlaceholder}>{user.email}</Text>
         </View>
+        <Button title="Deconnexion" onPress={() => this.clearStorage()} />
       </View>
     );
   }

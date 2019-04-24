@@ -77,7 +77,7 @@ const loginUser = (req, res) => {
           .set("x-access-token", token)
           .header("Access-Control-Expose-Headers", "x-access-token")
           .json({
-            userId: UserFound.id,
+            id: UserFound.id,
             token: token
           });
       } else {

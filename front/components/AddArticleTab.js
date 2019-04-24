@@ -60,6 +60,19 @@ export default class AddArticleTab extends React.Component {
     shouldPromptSignUp: false,
   };
 
+  componentDidMount = () => {
+    // eslint-disable-next-line react/prop-types
+    const { navigation } = this.props;
+    this.didFocusListener = navigation.addListener('didFocus', async () => {
+      const value = await AsyncStorage.getItem('token');
+      if (value != null) {
+        this.setState({ shouldPromptAuth: false, isLogged: true });
+      } else {
+        this.setState({ isLogged: false, shouldPromptAuth: false });
+      }
+    });
+  };
+
   addArticle = () => {
     const { url } = this.state;
     axios
@@ -78,9 +91,9 @@ export default class AddArticleTab extends React.Component {
   toggleAddArticleModal = () => {
     const { isLogged } = this.state;
     if (isLogged === true) {
-      this.setState({ shouldPromptAddArticle: true });
+      this.setState({ shouldPromptAddArticle: true, shouldPromptAuth: false });
     } else {
-      this.setState({ shouldPromptAuth: true });
+      this.setState({ shouldPromptAddArticle: false, shouldPromptAuth: true });
     }
   };
 
