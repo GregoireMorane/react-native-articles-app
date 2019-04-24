@@ -7,6 +7,8 @@ import {
   TextInput,
   StatusBar,
   KeyboardAvoidingView,
+  Alert,
+  AsyncStorage,
 } from 'react-native';
 import axios from 'axios';
 
@@ -55,7 +57,7 @@ export default class AddArticleTab extends React.Component {
     email: '',
     password: '',
     confirmPassword: '',
-    showSignUp: false,
+    shouldPromptSignUp: false,
   };
 
   addArticle = () => {
@@ -90,12 +92,56 @@ export default class AddArticleTab extends React.Component {
     this.setState({ shouldPromptAuth: false });
   };
 
-  loginUser = () => {
-    this.setState({ isLogged: true, shouldPromptAuth: false });
+  signInUser = () => {
+    const { email, password } = this.state;
+    axios
+      // .post('http://192.168.1.110:3002/articles/', {
+      .post('http://localhost:3002/users/login', {
+        email,
+        password,
+      })
+      .then(res => {
+        AsyncStorage.setItem('token', res.headers['x-access-token']);
+      })
+      .then(() => {
+        this.setState({
+          isLogged: true,
+          shouldPromptAuth: false,
+          pseudo: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+      })
+      .catch(() => Alert.alert('err', 'Wrong Email or Password'));
   };
 
-  signinUser = () => {
-    this.setState({ isLogged: true, shouldPromptAuth: false });
+  signUpUser = () => {
+    const { pseudo, email, password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      Alert.alert(
+        'Password not matching',
+        'Fields Password and Confirm password are differents'
+      );
+    } else {
+      axios
+        // .post('http://192.168.1.110:3002/articles/', {
+        .post('http://localhost:3002/users/register', {
+          pseudo,
+          email,
+          password,
+        })
+        .then(() => {
+          this.setState({
+            isLogged: true,
+            shouldPromptAuth: false,
+            pseudo: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          });
+        });
+    }
   };
 
   render() {
@@ -107,10 +153,10 @@ export default class AddArticleTab extends React.Component {
       email,
       password,
       confirmPassword,
-      showSignUp,
+      shouldPromptSignUp,
     } = this.state;
     if (shouldPromptAuth === true) {
-      if (showSignUp === true) {
+      if (shouldPromptSignUp === true) {
         return (
           <Modal visible={shouldPromptAuth} animationType="slide">
             <View style={styles.modal}>
@@ -142,6 +188,7 @@ export default class AddArticleTab extends React.Component {
                 />
                 <TextInput
                   style={styles.inputText}
+                  secureTextEntry
                   placeholder="Password"
                   onChangeText={value => this.setState({ password: value })}
                   value={password}
@@ -154,10 +201,10 @@ export default class AddArticleTab extends React.Component {
                   }
                   value={confirmPassword}
                 />
-                <Button title="SignIn" onPress={() => this.signinUser()} />
+                <Button title="Sign up" onPress={() => this.signUpUser()} />
                 <Button
                   title="Already have an account ? Sign in !"
-                  onPress={() => this.setState({ showSignUp: false })}
+                  onPress={() => this.setState({ shouldPromptSignUp: false })}
                 />
               </KeyboardAvoidingView>
             </View>
@@ -189,14 +236,15 @@ export default class AddArticleTab extends React.Component {
               />
               <TextInput
                 style={styles.inputText}
+                secureTextEntry
                 placeholder="Password"
                 onChangeText={value => this.setState({ password: value })}
                 value={password}
               />
-              <Button title="Login" onPress={() => this.loginUser()} />
+              <Button title="Sign in" onPress={() => this.signInUser()} />
               <Button
                 title="No account ? Sign up !"
-                onPress={() => this.setState({ showSignUp: true })}
+                onPress={() => this.setState({ shouldPromptSignUp: true })}
               />
             </KeyboardAvoidingView>
           </View>

@@ -1,6 +1,7 @@
 const { getMetaProperties } = require("./scrape");
 const dataInterface = require("./data-interface");
 const bcrypt = require("bcrypt");
+const utils = require("./utils");
 
 // ARTICLES
 
@@ -66,10 +67,19 @@ const loginUser = (req, res) => {
   if (dataInterface.findUserByEmail(email)) {
     const UserFound = dataInterface.findUserByEmail(email);
     bcrypt.compare(req.body.password, UserFound.password, (error, response) => {
+      const token = utils.generateToken(UserFound);
       if (response) {
-        return res.send(200, {
-          ok: `User logged with id : ${UserFound.id}`
-        });
+        // return res.send(200, {
+        //   ok: `User logged with id : ${UserFound.id}`
+        // });
+        return res
+          .status(200)
+          .set("x-access-token", token)
+          .header("Access-Control-Expose-Headers", "x-access-token")
+          .json({
+            userId: UserFound.id,
+            token: token
+          });
       } else {
         return res.send(404, { error: "Wrong password" });
       }
@@ -79,6 +89,14 @@ const loginUser = (req, res) => {
   }
 };
 
+const getUserById = (req, res) => {
+  const token = req.params.token;
+  const id = utils.getUserId(token);
+  // console.log("token", token);
+  // console.log("id", id);
+  res.send(dataInterface.findUserById(id));
+};
+
 module.exports = {
   createArticle,
   getArticles,
@@ -86,5 +104,6 @@ module.exports = {
   getUsers,
   createUser,
   deleteUser,
-  loginUser
+  loginUser,
+  getUserById
 };

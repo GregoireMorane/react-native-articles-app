@@ -1,7 +1,15 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  StatusBar,
+  AsyncStorage,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,17 +38,39 @@ const styles = StyleSheet.create({
 });
 
 export default class ProfileTab extends React.Component {
+  state = {
+    user: null,
+  };
+
+  componentDidMount = () => {
+    // eslint-disable-next-line react/prop-types
+    const { navigation } = this.props;
+    this.didFocusListener = navigation.addListener('didFocus', async () => {
+      const token = await AsyncStorage.getItem('token');
+      axios
+        .get(`http://localhost:3002/users/${token}`)
+        .then(res => {
+          this.setState({ user: res.data });
+        })
+        .catch(err => err);
+    });
+  };
+
   render() {
+    const { user } = this.state;
+    if (user === null) {
+      return <Text>Loading...</Text>;
+    }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Image style={styles.ProfilPicture} />
-        <Text>Name placeholder</Text>
+        <Text>{user.pseudo}</Text>
         <Icon color="red" name="heart" size={30} />
         <Text>Nb Loved Articles Placeholder</Text>
         <View style={styles.emailContainer}>
           <Icon color="#1E90FF" name="envelope" size={15} />
-          <Text style={styles.emailPlaceholder}>Email Placeholder</Text>
+          <Text style={styles.emailPlaceholder}>{user.email}</Text>
         </View>
       </View>
     );

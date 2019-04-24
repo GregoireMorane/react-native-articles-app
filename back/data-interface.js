@@ -33,7 +33,7 @@ const getUsers = () => db.get("users").value();
 
 const findUserByEmail = email => getUsers().find(user => user.email === email);
 
-const findUserById = id => getUser().find(user => user.id === id);
+const findUserById = id => getUsers().find(user => user.id === id);
 
 const createUser = data =>
   db
