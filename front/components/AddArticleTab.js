@@ -146,8 +146,8 @@ export default class AddArticleTab extends React.Component {
         })
         .then(() => {
           this.setState({
-            isLogged: true,
-            shouldPromptAuth: false,
+            isLogged: false,
+            shouldPromptAuth: true,
             pseudo: '',
             email: '',
             password: '',

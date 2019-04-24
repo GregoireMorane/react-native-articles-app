@@ -111,6 +111,23 @@
       "email": "Oui@oui.com",
       "password": "$2b$12$bqdaFeOxdEKzHF6.wiOK3.QY3UNO/5yoyZAexk3MuM9tjP.GNo9be",
       "id": "1556090503884"
+    },
+    {
+      "pseudo": "Yes",
+      "email": "Yes@yes.com",
+      "password": "$2b$12$1E63eZZUuewHpVIhtXfueuaVCHyhZoKMj7oF6i2/7coY9D3qYxtB6",
+      "id": "1556117167722",
+      "favorites": [
+        {
+          "articleId": "1554997010828"
+        },
+        {
+          "articleId": "1554990093779"
+        },
+        {
+          "articleId": "1556029054775"
+        }
+      ]
     }
   ]
 }

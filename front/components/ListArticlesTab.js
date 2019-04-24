@@ -11,6 +11,7 @@ import {
   Image,
   Linking,
   StatusBar,
+  AsyncStorage,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -202,6 +203,18 @@ export default class CardsInScrollView extends React.Component {
       });
   };
 
+  addToFavorites = async id => {
+    const token = await AsyncStorage.getItem('token');
+    axios({
+      method: 'POST',
+      url: `http://localhost:3002/users/favorite/${id}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-access-token': `${token}`,
+      },
+    });
+  };
+
   render() {
     const { articles, activeCard } = this.state;
     if (articles === null) {
@@ -269,6 +282,7 @@ export default class CardsInScrollView extends React.Component {
                         color="white"
                         name="heart"
                         size={30}
+                        onPress={() => this.addToFavorites(element.id)}
                       />
                       <Icon
                         style={styles.iconsContent}

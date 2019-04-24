@@ -49,6 +49,14 @@ const deleteUser = id =>
     .remove({ id: id })
     .write();
 
+const addFavoriteArticle = (userId, articleId) => {
+  db.get("users")
+    .find(user => user.id === userId)
+    .get("favorites")
+    .push({ articleId })
+    .write();
+};
+
 module.exports = {
   getArticles,
   findArticleByUrl,
@@ -59,5 +67,6 @@ module.exports = {
   findUserByEmail,
   findUserById,
   createUser,
-  deleteUser
+  deleteUser,
+  addFavoriteArticle
 };

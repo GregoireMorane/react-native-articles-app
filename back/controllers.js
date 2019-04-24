@@ -69,9 +69,6 @@ const loginUser = (req, res) => {
     bcrypt.compare(req.body.password, UserFound.password, (error, response) => {
       const token = utils.generateToken(UserFound);
       if (response) {
-        // return res.send(200, {
-        //   ok: `User logged with id : ${UserFound.id}`
-        // });
         return res
           .status(200)
           .set("x-access-token", token)
@@ -92,9 +89,15 @@ const loginUser = (req, res) => {
 const getUserById = (req, res) => {
   const token = req.params.token;
   const id = utils.getUserId(token);
-  // console.log("token", token);
-  // console.log("id", id);
   res.send(dataInterface.findUserById(id));
+};
+
+const addFavoriteArticleToUser = (req, res) => {
+  const articleId = req.params.id;
+  const token = req.headers["x-access-token"];
+  const userId = utils.getUserId(token);
+  dataInterface.addFavoriteArticle(userId, articleId);
+  res.send(201, dataInterface.findUserById(userId));
 };
 
 module.exports = {
@@ -105,5 +108,6 @@ module.exports = {
   createUser,
   deleteUser,
   loginUser,
-  getUserById
+  getUserById,
+  addFavoriteArticleToUser
 };

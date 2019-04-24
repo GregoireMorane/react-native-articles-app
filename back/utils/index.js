@@ -15,7 +15,6 @@ module.exports = {
     );
   },
   getUserId: token => {
-    //console.log("token", token);
     let id = null;
     if (token != null) {
       let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);

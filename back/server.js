@@ -9,7 +9,8 @@ const {
   getUsers,
   createUser,
   loginUser,
-  getUserById
+  getUserById,
+  addFavoriteArticleToUser
 } = require("./controllers");
 
 const app = express();
@@ -32,7 +33,7 @@ app.get("/users", getUsers);
 app.get("/users/:token", getUserById);
 app.post("/users/register", createUser);
 app.post("/users/login", loginUser);
-
+app.post("/users/favorite/:id", addFavoriteArticleToUser);
 app.listen(3002, () => {
   console.log("Server listening on port 3002.");
 });
