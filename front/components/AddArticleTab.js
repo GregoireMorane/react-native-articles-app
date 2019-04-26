@@ -208,6 +208,7 @@ export default class AddArticleTab extends React.Component {
                 />
                 <TextInput
                   style={styles.inputText}
+                  secureTextEntry
                   placeholder="Confirm password"
                   onChangeText={value =>
                     this.setState({ confirmPassword: value })

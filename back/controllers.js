@@ -87,9 +87,9 @@ const loginUser = (req, res) => {
 };
 
 const getUserById = (req, res) => {
-  const token = req.params.token;
-  const id = utils.getUserId(token);
-  res.send(dataInterface.findUserById(id));
+  const token = req.headers["x-access-token"];
+  const userId = utils.getUserId(token);
+  res.send(200, dataInterface.findUserById(userId));
 };
 
 const addFavoriteArticleToUser = (req, res) => {

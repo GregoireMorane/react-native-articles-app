@@ -97,6 +97,27 @@
       "description": "Le média hip hop du turfu : interviews, chroniques d'albums, podcasts, agenda concerts, pour explorer la galaxie rap français et rap américain",
       "url": "https://www.thebackpackerz.com/dj-elite-doums-clip-notting-hills/",
       "id": "1556114855831"
+    },
+    {
+      "title": "Doja Cat, le phénomène rap haut en couleur",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/03/dojo-cat-rap.png",
+      "description": "Depuis quelques temps, l'univers complètement barré de Doja Cat affole les compteurs YouTube. Coup d'oeil sur ce phénomène.",
+      "url": "https://www.thebackpackerz.com/dojo-cat-rap-envoutant-acidule/",
+      "id": "1556204797452"
+    },
+    {
+      "title": "La renaissance de \"I Got 5 On It\" avec le film 'Us', vue par son producteur",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/03/us.jpg",
+      "description": "\"I Got 5 On It\" vit une nouvelle jeunesse au cinéma dans le film 'Us'. Retour avec Tone Capone, le beatmaker du morceau, sur cette renaissance.",
+      "url": "https://www.thebackpackerz.com/renaissance-i-got-5-on-it-film-us-producteur/",
+      "id": "1556205066105"
+    },
+    {
+      "title": "Elzhi, l'écriture dans la peau",
+      "url_img": "https://www.thebackpackerz.com/wp-content/uploads/2019/03/Elzhi.jpg",
+      "description": "Elzhi est connu pour être l'un des meilleurs rappeurs grâce à son écriture technique et introspective. Retour sur 20 ans d'une carrière mouvementée",
+      "url": "https://www.thebackpackerz.com/elzhi-ecriture-dans-la-peau/",
+      "id": "1556205110604"
     }
   ],
   "users": [
@@ -126,6 +147,32 @@
         },
         {
           "articleId": "1556029054775"
+        }
+      ]
+    },
+    {
+      "pseudo": "Greg",
+      "email": "Greg@greg.com",
+      "password": "$2b$12$.BjB8ihdyt13uR.unuX7KugfBEbxuHibTU2cquv2or/KFRana7C9e",
+      "id": "1556203436356",
+      "favorites": [
+        {
+          "articleId": "1554990093779"
+        },
+        {
+          "articleId": "1554997010828"
+        },
+        {
+          "articleId": "1555001914741"
+        },
+        {
+          "articleId": "1556032528706"
+        },
+        {
+          "articleId": "1556205110604"
+        },
+        {
+          "articleId": "1556204797452"
         }
       ]
     }

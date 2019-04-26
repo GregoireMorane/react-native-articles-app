@@ -49,8 +49,15 @@ export default class ProfileTab extends React.Component {
     const { navigation } = this.props;
     this.didFocusListener = navigation.addListener('didFocus', async () => {
       const token = await AsyncStorage.getItem('token');
-      axios
-        .get(`http://localhost:3002/users/${token}`)
+
+      axios({
+        method: 'GET',
+        url: `http://localhost:3002/usersById`,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'x-access-token': `${token}`,
+        },
+      })
         .then(res => {
           this.setState({ user: res.data, clearedStorage: false });
         })

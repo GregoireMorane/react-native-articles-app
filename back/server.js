@@ -30,7 +30,7 @@ app.get("/articles", getArticles);
 app.post("/articles", createArticle);
 app.delete("/articles/:id", deleteArticle);
 app.get("/users", getUsers);
-app.get("/users/:token", getUserById);
+app.get("/usersById", getUserById);
 app.post("/users/register", createUser);
 app.post("/users/login", loginUser);
 app.post("/users/favorite/:id", addFavoriteArticleToUser);
