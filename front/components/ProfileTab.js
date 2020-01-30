@@ -42,26 +42,32 @@ export default class ProfileTab extends React.Component {
   state = {
     user: null,
     clearedStorage: true,
+    nbArticleLoved: 5,
   };
 
   componentDidMount = () => {
     // eslint-disable-next-line react/prop-types
     const { navigation } = this.props;
     this.didFocusListener = navigation.addListener('didFocus', async () => {
-      const token = await AsyncStorage.getItem('token');
+      if (await AsyncStorage.getItem('token')) {
+        const token = await AsyncStorage.getItem('token');
 
-      axios({
-        method: 'GET',
-        url: `http://localhost:3002/usersById`,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'x-access-token': `${token}`,
-        },
-      })
-        .then(res => {
-          this.setState({ user: res.data, clearedStorage: false });
+        axios({
+          method: 'GET',
+          url: `http://localhost:3002/usersById`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'x-access-token': `${token}`,
+          },
         })
-        .catch(err => err);
+          .then(res => {
+            this.setState({
+              user: res.data,
+              clearedStorage: false,
+            });
+          })
+          .catch(err => err);
+      }
     });
   };
 
@@ -71,7 +77,7 @@ export default class ProfileTab extends React.Component {
   };
 
   render() {
-    const { user, clearedStorage } = this.state;
+    const { user, clearedStorage, nbArticleLoved } = this.state;
     if (clearedStorage === true) {
       return (
         <View style={styles.container}>
@@ -85,7 +91,7 @@ export default class ProfileTab extends React.Component {
         <Image style={styles.ProfilPicture} />
         <Text>{user.pseudo}</Text>
         <Icon color="red" name="heart" size={30} />
-        <Text>Nb Loved Articles Placeholder</Text>
+        <Text>{nbArticleLoved}</Text>
         <View style={styles.emailContainer}>
           <Icon color="#1E90FF" name="envelope" size={15} />
           <Text style={styles.emailPlaceholder}>{user.email}</Text>

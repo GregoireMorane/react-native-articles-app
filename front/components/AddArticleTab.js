@@ -80,6 +80,9 @@ export default class AddArticleTab extends React.Component {
       .post('http://localhost:3002/articles/', {
         url,
       })
+      .then(res => {
+        AsyncStorage.setItem('token', res.headers['x-access-token']);
+      })
       .then(() => {
         this.setState({
           shouldPromptAddArticle: false,
@@ -108,7 +111,7 @@ export default class AddArticleTab extends React.Component {
   signInUser = () => {
     const { email, password } = this.state;
     axios
-      // .post('http://192.168.1.110:3002/articles/', {
+      // .post('http://192.168.1.110:3002/users/login', {
       .post('http://localhost:3002/users/login', {
         email,
         password,
@@ -138,7 +141,7 @@ export default class AddArticleTab extends React.Component {
       );
     } else {
       axios
-        // .post('http://192.168.1.110:3002/articles/', {
+        // .post('http://192.168.1.110:3002/users/register', {
         .post('http://localhost:3002/users/register', {
           pseudo,
           email,
@@ -167,6 +170,7 @@ export default class AddArticleTab extends React.Component {
       password,
       confirmPassword,
       shouldPromptSignUp,
+      isLogged,
     } = this.state;
     if (shouldPromptAuth === true) {
       if (shouldPromptSignUp === true) {
@@ -296,10 +300,17 @@ export default class AddArticleTab extends React.Component {
             </KeyboardAvoidingView>
           </View>
         </Modal>
-        <Button
-          onPress={() => this.toggleAddArticleModal()}
-          title="Ajouter un article"
-        />
+        {isLogged ? (
+          <Button
+            onPress={() => this.toggleAddArticleModal()}
+            title="Ajouter un article"
+          />
+        ) : (
+          <Button
+            onPress={() => this.toggleAddArticleModal()}
+            title="Se connecter"
+          />
+        )}
       </View>
     );
   }

@@ -12,6 +12,7 @@ import {
   Linking,
   StatusBar,
   AsyncStorage,
+  TouchableOpacity,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -127,14 +128,18 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   iconsContainer: {
-    width: '100%',
     marginTop: 5,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    position: 'absolute',
+    bottom: -110,
+    right: 0,
   },
-  iconsContent: {
-    marginLeft: 2,
+  iconsSingleContainer: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -270,27 +275,39 @@ export default class CardsInScrollView extends React.Component {
                       {element.description}
                     </Text>
                     <View style={styles.iconsContainer}>
-                      <Icon
-                        style={styles.iconsContent}
-                        color="white"
-                        name="external-link"
-                        size={30}
+                      <TouchableOpacity
                         onPress={() => Linking.openURL(element.url)}
-                      />
-                      <Icon
-                        style={styles.iconsContent}
-                        color="white"
-                        name="heart"
-                        size={30}
+                        style={styles.iconsSingleContainer}
+                      >
+                        <Icon
+                          style={styles.iconsContent}
+                          color="white"
+                          name="external-link"
+                          size={25}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
                         onPress={() => this.addToFavorites(element.id)}
-                      />
-                      <Icon
-                        style={styles.iconsContent}
-                        color="white"
-                        name="trash"
-                        size={30}
+                        style={styles.iconsSingleContainer}
+                      >
+                        <Icon
+                          style={styles.iconsContent}
+                          color="white"
+                          name="heart"
+                          size={25}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
                         onPress={() => this.handleDeletePress(element.id)}
-                      />
+                        style={styles.iconsSingleContainer}
+                      >
+                        <Icon
+                          style={styles.iconsContent}
+                          color="white"
+                          name="trash"
+                          size={25}
+                        />
+                      </TouchableOpacity>
                     </View>
                   </ScrollView>
                 </Content>
