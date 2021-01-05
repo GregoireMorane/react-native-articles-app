@@ -9,7 +9,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "expo": "^32.0.0",
     "fs": "^0.0.1-security",
     "react": "16.5.0",
